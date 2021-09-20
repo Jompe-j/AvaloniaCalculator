@@ -6,7 +6,11 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AvaloniaCalculator.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="AvaloniaCalculator">
+        Title="AvaloniaCalculator"
+        MinHeight="250"
+        MinWidth="250"
+        Height="250"
+        Width="270">
 
     <Design.DataContext>
         <vm:MainWindowViewModel />
@@ -15,7 +19,7 @@
     <Grid RowDefinitions="Auto,*" >
         <TextBlock Grid.Row="0" Text="Test" HorizontalAlignment="Right" Padding="10" />
 
-        <Grid Grid.Row="1" RowDefinitions="*, *, * " ColumnDefinitions="*, *, *">
+        <Grid Grid.Row="1" RowDefinitions="*, *, *, * " ColumnDefinitions="*, *, *">
             <Button Grid.Row="0" Grid.Column="0" Content="1" />
             <Button Grid.Row="0" Grid.Column="1" Content="2" />
             <Button Grid.Row="0" Grid.Column="2" Content="3" />
@@ -25,6 +29,10 @@
             <Button Grid.Row="2" Grid.Column="0" Content="7" />
             <Button Grid.Row="2" Grid.Column="1" Content="8"/>
             <Button Grid.Row="2" Grid.Column="2" Content="9"/>
+            <Button Grid.Row="3" Grid.Column="0" Content="0"/>
+            <Button Grid.Row="3" Grid.Column="1" Content="+"/>
+            <Button Grid.Row="3" Grid.Column="2" Content="*"/>
+            
         </Grid>
     </Grid>
 </Window>
