@@ -12,6 +12,7 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+    <Grid RowDefinitions="Auto,*">
+       <TextBlock Text="Test"></TextBlock> 
+    </Grid>
 </Window>
