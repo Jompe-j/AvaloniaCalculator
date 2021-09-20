@@ -15,6 +15,14 @@
     <Design.DataContext>
         <vm:MainWindowViewModel />
     </Design.DataContext>
+    
+    <Window.Styles>
+       <Style Selector="Button">
+           <Setter Property="Margin" Value="5"/>
+           <Setter Property="Height" Value="30"/>
+           <Setter Property="Width" Value="30"/>
+       </Style> 
+    </Window.Styles>
 
     <Grid RowDefinitions="Auto,*" >
         <TextBlock Grid.Row="0" Text="Test" HorizontalAlignment="Right" Padding="10" />
