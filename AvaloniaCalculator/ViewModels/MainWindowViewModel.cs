@@ -23,9 +23,10 @@ namespace AvaloniaCalculator.ViewModels {
         private string EvaluatedExpressionString(string input) {
             var outputQueue = new Queue<string>();
             var operatorStack = new Stack<string>();
-
-            for (var i = 0; i < FieldText.Length; i++) {
-                var c = FieldText[i];
+            var expression = FieldText + input;
+            
+            for (var i = 0; i < expression.Length; i++) {
+                var c = expression[i];
 
                 if (char.IsDigit(c)) {
                     outputQueue.Enqueue(c.ToString());
@@ -44,7 +45,7 @@ namespace AvaloniaCalculator.ViewModels {
                 if (c == '(') {
                     operatorStack.Push(c.ToString());
                 }
-                else if (c == ')') {
+                else if (c == ')') { //TODO Something is not working with the handling of the parenthesis 
                     while (operatorStack.Count != 0 && operatorStack.Peek() != "(") {
                         outputQueue.Enqueue(operatorStack.Pop());
                     }

@@ -27,7 +27,7 @@
     <Grid RowDefinitions="Auto,*">
         <TextBlock Grid.Row="0" Text="{Binding FieldText}" HorizontalAlignment="Right" Padding="10" />
 
-        <Grid Grid.Row="1" RowDefinitions="*, *, *, * " ColumnDefinitions="*, *, *">
+        <Grid Grid.Row="1" RowDefinitions="*, *, *, * " ColumnDefinitions="*, *, *,*,*">
             <Button Grid.Row="0" Grid.Column="0" Content="1"
                     Command="{Binding ButtonClicked}" CommandParameter="1" />
             <Button Grid.Row="0" Grid.Column="1" Content="2"
@@ -46,12 +46,22 @@
                     Command="{Binding ButtonClicked}" CommandParameter="8" />
             <Button Grid.Row="2" Grid.Column="2" Content="9"
                     Command="{Binding ButtonClicked}" CommandParameter="9" />
-            <Button Grid.Row="3" Grid.Column="0" Content="0"
+
+            <Button Grid.Row="3" Grid.Column="0" Content="C"/>
+            <Button Grid.Row="3" Grid.Column="1" Content="0"
                     Command="{Binding ButtonClicked}" CommandParameter="0" />
-            <Button Grid.Row="3" Grid.Column="1" Content="+"
-                    Command="{Binding ButtonClicked}" CommandParameter="+" />
-            <Button Grid.Row="3" Grid.Column="2" Content="*"
-                    Command="{Binding ButtonClicked}" CommandParameter="*" />
+            <Button Grid.Row="3" Width="50" Grid.Column="2" Content="bksp"
+                    Command="{Binding ButtonClicked}"
+                    CommandParameter="bksp" />
+            <Button Grid.Row="0" Grid.Column="3" Content="(" Command="{Binding ButtonClicked}" CommandParameter="(" />
+            <Button Grid.Row="0" Grid.Column="4" Content=")" Command="{Binding ButtonClicked}" CommandParameter=")" />
+            <Button Grid.Row="1" Grid.Column="3" Content="+" Command="{Binding ButtonClicked}" CommandParameter="+" />
+            <Button Grid.Row="1" Grid.Column="4" Content="-" Command="{Binding ButtonClicked}" CommandParameter="-" />
+            <Button Grid.Row="2" Grid.Column="3" Content="*" Command="{Binding ButtonClicked}" CommandParameter="*" />
+            <Button Grid.Row="2" Grid.Column="4" Content="/" Command="{Binding ButtonClicked}" CommandParameter="/" />
+            <Button Grid.Row="3" Grid.Column="3" Content="^" Command="{Binding ButtonClicked}" CommandParameter="^" />
+            <Button Grid.Row="3" Grid.Column="4" Content="=" Command="{Binding ButtonClicked}" CommandParameter="=" />
+
 
         </Grid>
     </Grid>
