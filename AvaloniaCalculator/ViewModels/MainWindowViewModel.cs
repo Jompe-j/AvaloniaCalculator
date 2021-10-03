@@ -27,21 +27,30 @@ namespace AvaloniaCalculator.ViewModels {
             
             for (var i = 0; i < expression.Length; i++) {
                 var c = expression[i];
-
+                
+                // Check for digit input
                 if (char.IsDigit(c)) {
-                    outputQueue.Enqueue(c.ToString());
+                    var d = c.ToString(); 
+                    for (var j = i + 1; j < expression.Length -1 && char.IsDigit(expression[j]); j++) {
+                        d += expression[j].ToString();
+                        i = j;
+                    }
+                    outputQueue.Enqueue(d);
                 }
-
+                
+                // Check for operator input
                 if (c is '+' or '-' or '*' or '/') {
                     while (operatorStack.Count > 0
                            && operatorStack.Peek() != "("
-                           && Precedence(operatorStack.Peek()) > Precedence(c.ToString())) {
+                           && (Precedence(operatorStack.Peek()) > Precedence(c.ToString()) ||
+                           Precedence(operatorStack.Peek()) == Precedence(c.ToString()) && c == '^')) {
                         outputQueue.Enqueue(operatorStack.Pop());
                     }
 
                     operatorStack.Push(c.ToString());
                 }
-
+                
+                // Handle Parenthesis 
                 if (c == '(') {
                     operatorStack.Push(c.ToString());
                 }
@@ -55,18 +64,17 @@ namespace AvaloniaCalculator.ViewModels {
                     }
                 }
             }
-
+            // Empty stack
             while (operatorStack.Count != 0) {
                outputQueue.Enqueue(operatorStack.Pop()); 
             }
 
             var test = "";
             foreach (var t in outputQueue) {
-                test += t;
+                test += t + "|";
             }
-            
+           
             Debug.WriteLine(test);
-
             return FieldText + input;
         }
 
