@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Text;
 
 namespace AvaloniaCalculator.ViewModels {
     public class MainWindowViewModel : INotifyPropertyChanged {
         private string _textFieldText = "";
-        public string Greeting => "Welcome to Avalonia!";
         public string FieldText {
             get => _textFieldText;
             set {
@@ -39,11 +36,11 @@ namespace AvaloniaCalculator.ViewModels {
                 }
                 
                 // Check for operator input
-                if (c is '+' or '-' or '*' or '/') {
+                if (c is '+' or '-' or '*' or '/' or '^') {
                     while (operatorStack.Count > 0
                            && operatorStack.Peek() != "("
                            && (Precedence(operatorStack.Peek()) > Precedence(c.ToString()) ||
-                           Precedence(operatorStack.Peek()) == Precedence(c.ToString()) && c == '^')) {
+                           Precedence(operatorStack.Peek()) == Precedence(c.ToString()) && c != '^')) {
                         outputQueue.Enqueue(operatorStack.Pop());
                     }
 
@@ -59,7 +56,7 @@ namespace AvaloniaCalculator.ViewModels {
                         outputQueue.Enqueue(operatorStack.Pop());
                     }
 
-                    if (operatorStack.Count != 0 && operatorStack.Peek() == ")") {
+                    if (operatorStack.Count != 0 && operatorStack.Peek() == "(") {
                         operatorStack.Pop();
                     }
                 }
@@ -79,7 +76,18 @@ namespace AvaloniaCalculator.ViewModels {
         }
 
         private static int Precedence(string c) {
-            return c is "-"or "+" ? 1 : 2;
+            switch (c) {
+                case "+":
+                case "-":
+                    return 2;
+                case "*":
+                case "/":
+                    return 3;
+                case "^":
+                    return 4;
+                default:
+                    return 4;
+            }
         }
     }
 }
