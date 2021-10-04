@@ -47,11 +47,12 @@
             <Button Grid.Row="2" Grid.Column="2" Content="9"
                     Command="{Binding ButtonClicked}" CommandParameter="9" />
 
-            <Button Grid.Row="3" Grid.Column="0" Content="C"/>
+            <Button Grid.Row="3" Grid.Column="0" Content="C"
+                    Command="{Binding ClearCalculator}"/>
             <Button Grid.Row="3" Grid.Column="1" Content="0"
                     Command="{Binding ButtonClicked}" CommandParameter="0" />
             <Button Grid.Row="3" Width="50" Grid.Column="2" Content="bksp"
-                    Command="{Binding ButtonClicked}"
+                    Command="{Binding Backspace}"
                     CommandParameter="bksp" />
             <Button Grid.Row="0" Grid.Column="3" Content="(" Command="{Binding ButtonClicked}" CommandParameter="(" />
             <Button Grid.Row="0" Grid.Column="4" Content=")" Command="{Binding ButtonClicked}" CommandParameter=")" />

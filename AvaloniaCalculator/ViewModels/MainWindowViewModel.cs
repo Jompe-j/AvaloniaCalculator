@@ -5,12 +5,34 @@ using System.Diagnostics;
 namespace AvaloniaCalculator.ViewModels {
     public class MainWindowViewModel : INotifyPropertyChanged {
         private string _textFieldText = "";
+        private bool _unchanged;
         public string FieldText {
             get => _textFieldText;
             set {
-                _textFieldText = value;
+                if (!_unchanged) {
+                    _textFieldText = value;
+                }
+                else {
+                    _textFieldText = value[1].ToString();
+                    _unchanged = false;
+                }
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FieldText)));
             }
+        }
+
+        public MainWindowViewModel() {
+            ClearCalculator();
+        }
+
+        private void Backspace() {
+            FieldText = FieldText[..^1];
+        }
+        
+        
+
+        private void ClearCalculator() {
+            FieldText = "0";
+            _unchanged = true;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
