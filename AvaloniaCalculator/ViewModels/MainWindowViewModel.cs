@@ -13,7 +13,7 @@ namespace AvaloniaCalculator.ViewModels {
                     _textFieldText = value;
                 }
                 else {
-                    _textFieldText = value[1].ToString();
+                    _textFieldText = value.Length == 1 ? "0" : value[1].ToString();
                     _unchanged = false;
                 }
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FieldText)));
@@ -25,7 +25,7 @@ namespace AvaloniaCalculator.ViewModels {
         }
 
         private void Backspace() {
-            FieldText = FieldText[..^1];
+            FieldText = FieldText.Length == 1 ? "0" : FieldText[..^1];
         }
         
         
