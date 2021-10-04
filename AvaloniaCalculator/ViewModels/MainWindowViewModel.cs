@@ -56,9 +56,15 @@ namespace AvaloniaCalculator.ViewModels {
                         outputQueue.Enqueue(operatorStack.Pop());
                     }
 
+                    if (operatorStack.Count == 0) {
+                       expression = expression[..^1];
+                    } 
+
                     if (operatorStack.Count != 0 && operatorStack.Peek() == "(") {
                         operatorStack.Pop();
                     }
+                    break;
+                    
                 }
             }
             // Empty stack
@@ -72,7 +78,7 @@ namespace AvaloniaCalculator.ViewModels {
             }
            
             Debug.WriteLine(test);
-            return FieldText + input;
+            return expression;
         }
 
         private static int Precedence(string c) {
